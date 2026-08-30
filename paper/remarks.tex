@@ -1,0 +1,8 @@
+\section{Remarks}\label{sec:remarks}
+
+The likelihood is maximised by multi-start L-BFGS-B over a reparameterised surface in which each parameter is a smooth transform of an unconstrained coordinate: $\omega = \exp(\tau_\omega)$, persistence $p = \sigma(\tau_p)$ with $\alpha = pw$ and $\beta = p(1-w)$, and $\nu = 2.05 + \exp(\tau_\nu)$. Positivity and covariance stationarity are therefore enforced by construction rather than by penalty, and the objective is differentiable throughout the admissible region. Estimation from twenty-six distinct starting values yields a single optimum for each of the six currencies. An earlier simplex-based implementation with penalty-enforced constraints produced multiple local optima for three series, with a likelihood spread of up to 95 log points, and was discarded.
+
+The admissibility floor on $\omega$ is specified relative to sample variance ($10^{-3}$ of the variance of returns) rather than in absolute terms, since return variances differ across the six series by three orders of magnitude and any fixed floor would bind on the pegged currencies while leaving the floating ones unconstrained. Estimates for the Czech koruna and Romanian leu lie at this floor. Inspection of the fitted conditional variances confirms this reflects near-integrated persistence rather than variance collapse: the smallest fitted daily standard deviation is 9\% of the unconditional standard deviation for the koruna, and no fitted variance falls below 5\% of it. For the koruna this is consistent with the Czech National Bank's exchange rate floor of November 2013 to April 2017. Varying the admissibility floor over two orders of magnitude leaves the second-stage interaction coefficient between $-0.101$ and $-0.095$.
+
+
+

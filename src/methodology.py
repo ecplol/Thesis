@@ -413,11 +413,8 @@ print("Shape:", trade_raw.shape)
 print("Columns:", trade_raw.columns.tolist())
 print(trade_raw.head())
 
-print("exports shape:", exports.shape)
-print("imports shape:", imports.shape)
-print(trade_final.head(20))
-print(trade_final.shape)
-print(trade_final["country"].unique())
+# NOTE: exports / imports / trade_final are created in the NEXT block (see below).
+# Printing them here is what made this script die with NameError at import time.
 print(trade_raw[["flow", "FLOW"]].head(10))
 print(trade_raw["flow"].dtype, trade_raw["FLOW"].dtype)
 print(trade_raw["flow"].unique())

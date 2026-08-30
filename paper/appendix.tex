@@ -1,0 +1,98 @@
+\section{Appendix}\label{appendix}
+\subsection{Appendix A}\label{appendA}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lrrrrrr}
+        \toprule
+        & (1) & (2) & (3) & (4) & (5)&(6) \\
+        \midrule
+        $growth$(1)& 1.00 & -0.08 & 0.04 & 0.12 & -0.02 & -0.36 \\
+        $vol$ (2) & -0.08 & 1.00 & 0.29 & 0.09 & 0.29 & -0.00 \\
+        $trade$ (3)& 0.04 & 0.29 & 1.00 & 0.24 & 0.21 & -0.22 \\
+        $gfcf$ (4)& 0.12 & 0.09 & 0.24 & 1.00 & 0.26 & -0.36 \\
+        $hicp$ (5)& -0.02 & 0.29 & 0.21 & 0.26 & 1.00 & -0.16 \\
+        $govexp$ (6)& -0.36 & -0.00 & -0.22 & -0.36 & -0.16 & 1.00 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Correlation matrix}
+\end{table}
+
+\subsection{Appendix B}\label{appendB}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Currency} & \textbf{$\omega$} & \textbf{$\alpha+\beta$} & \textbf{$\nu$} & \textbf{Note} \\
+        \midrule
+        CZK & 0.00011 & 0.999994 & 5.09 & $\omega$ at floor; managed regime \\
+        DKK & 0.000004 & 0.999994 & 3.86 & ERM II band \\
+        HUF & 0.00155 & 0.996745 & 7.78 &  \\
+        PLN & 0.00136 & 0.998716 & 6.53 &  \\
+        RON & 0.00010 & 0.999994 & 4.24 & $\omega$ at floor; managed regime \\
+        SEK & 0.00204 & 0.988569 & 7.82 &  \\
+        \bottomrule
+    \end{tabular}
+    \caption{GARCH(1,1)-t estimates. All twenty-six starting values converge to a single optimum for each currency.}
+    \label{app:garch}
+\end{table}
+
+\subsection{Appendix C}\label{appendC}
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{llrrr}
+        \toprule
+        \textbf{Spec.} & \textbf{Variable} & \textbf{p (OLS)} & \textbf{p (HAC)} & \textbf{p (clu)} \\
+        \midrule
+        Model 1 & $vol$                & 0.311 & 0.333 & 0.246 \\
+         & $trade$           & 0.982 & 0.983 & 0.987 \\
+         & $vol x trade$  & 0.199 & 0.223 & 0.039 \\
+         & $gfcf$                      & 0.939 & 0.948 & 0.950 \\
+         & $hicp$                      & 0.886 & 0.867 & 0.766 \\
+         & $govexp$    & 0.003 & 0.001 & 0.004 \\
+        \midrule
+        Model 2 & $vol$                & 0.046 & 0.027 & 0.045 \\
+         & $trade$          & 0.219 & 0.255 & 0.134 \\
+         & $Vol x trade$ & 0.522  & 0.440 & 0.450 \\
+         & $gfcf$                      & 0.004 & 0.011 & 0.001 \\
+         & $hicp$                      & 0.625 & 0.609 & 0.511 \\
+         & $govexp$    & 0.001 & 0.002 & 0.025 \\
+        \midrule
+        Model 3 & $vol$                & 0.064 & 0.081 & 0.198 \\
+         & $trade$           & 0.233 & 0.115 & 0.307 \\
+         & $Vol x trade$ & 0.058  & 0.023 & 0.042 \\
+         & $gfcf$                      & 0.007 & 0.001 & 0.030 \\
+         & $hicp$                      & 0.120 & 0.085 & 0.218 \\
+         & $govexp$    & 0.832 & 0.806 & 0.871 \\
+        \bottomrule
+    \end{tabular}
+    \caption{P-values under alternative covariance estimators. Coefficients and
+    standard errors are unchanged from Table~\ref{tab:panel_results}; only the
+    p-values differ. Cluster-robust p-values are computed on six clusters and
+    are biased downward.}
+    \label{tab:se_alt}
+\end{table}
+
+\subsection{Appendix D}\label{appendD}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Quantile} & \textbf{Trade intensity} &
+        $\partial\mathit{Growth}/\partial\mathit{Vol}$ & \textbf{SE} & \textbf{p} \\
+        \midrule
+        5th   & 24.96 & $6.251$   & 3.354 & 0.066 \\
+        25th  & 28.28 & $5.932$   & 3.217 & 0.069 \\
+        50th  & 40.47 & $4.761$   & 2.734 & 0.085 \\
+        75th  & 78.54 & $1.103$   & 1.675 & 0.512 \\
+        95th  & 95.64 & $-0.540$  & 1.686 & 0.749 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Marginal effect of volatility on growth, evaluated across the
+    distribution of euro-area trade intensity. Country means: Denmark 25.9,
+    Sweden 27.6, Romania 36.8, Poland 46.6, Hungary 84.8, Czech Republic 87.9.}
+    \label{tab:mar_eff_vol}
+\end{table}

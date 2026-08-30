@@ -1,0 +1,25 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# biblatex leaves these behind when a LaTeX run ends in error; they are stale
+# and make biber report a misleading "malformed .bcf" instead of the real error
+*-SAVE-ERROR
+
+# iCloud sync conflict copies, e.g. "main 3.bbl", "main 12.synctex(busy)"
+*\ [0-9]*.*
+*\(busy\)
+
+# macOS
+.DS_Store

@@ -1,5 +1,7 @@
 \documentclass{article}
 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{setspace}
 \usepackage{microtype}
 \usepackage{siunitx}
@@ -13,6 +15,9 @@
 \usepackage{csquotes}
 \usepackage{indentfirst}
 \usepackage{float}
+\usepackage{rotating}   % sidewaystable, for the wide robustness table
+\usepackage{placeins}   % \FloatBarrier: sidewaystable cannot take [H], so it is
+                        % flushed explicitly before the next section begins
 
 \usepackage[style=apa,backend=biber]{biblatex}
 \addbibresource{ref.bib}
@@ -24,7 +29,7 @@
     urlcolor=blue, % choose color for \url (default)
 }
 
-\title{\includegraphics[width=\textwidth]{fig/logo}\\[2cm]\textbf{\dots}}
+\title{\includegraphics[width=\textwidth]{fig/logo}\\[2cm]\textbf{\ The Impact of Exchange Rate Volatility on Economic Growth in Non-Euro EU Member States: Euro Area Trade Integration}}
 \author{
     Sung Kwan Chiu \\ Index No. 444585 \\ \href{mailto:s.chiu@student.uw.edu.pl}{s.chiu@student.uw.edu.pl}
     }
@@ -33,7 +38,7 @@
 \begin{document}
 \onehalfspacing\maketitle
 \begin{flushright}
-    \textit{Prepared under the supervision of }
+    \textit{Prepared under the supervision of Dr hab. Marcin Gruszczynski}
 \end{flushright}
 \vspace{\baselineskip}
 \input{abstract}
@@ -43,19 +48,21 @@
 \tableofcontents
 
 \newpage
-\include{intro}
+\input{intro}
 \newpage
-\include{data}
+\input{theory}
+\input{commercial} 
 \newpage
-\include{results}
+\input{methodology}
+\input{results}
 \newpage
-\include{conclusion}
-\newpage
-\include{remarks}
-\newpage
+\input{conclusion}
 
+\newpage
 \section{Bibliography}\label{sec:bibliography}
 \nocite{*}
-\printbibliography[heading=subbibliography, title={References in the Paper}, keyword=paper]
-\printbibliography[heading=subbibliography, title={References in the Source Code}, keyword=src]
+\printbibliography[heading=subbibliography, keyword=paper]
+\newpage
+\input{remarks}
+\input{appendix}
 \end{document}

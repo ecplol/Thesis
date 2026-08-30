@@ -1,0 +1,270 @@
+\section{Methodology}\label{sec:methodology}
+
+The proposed methodology of this paper has these components:
+
+\begin{itemize}
+    \item Data Collection
+    \item Exchange Rate Volatility Estimation
+    \item Panel Regression Model
+    \item Estimation and Testing
+    \item Post-fit Validation
+\end{itemize}
+
+Each component is detailed in the following subsections.
+
+\subsection{Data Collection}\label{subsec:data_col}
+
+The model includes a wide range of macroeconomic indicators alongside the interactions.
+Observations for all series run from 2005 to 2024 and the frequency is annual.
+All series are sourced from the Eurostat database.
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{lll}
+        \toprule
+        Variable & Units & Eurostat ID \\
+        \midrule
+        Real GDP Growth($growth$) & Percentage & \href{https://doi.org/10.2908/NAMA_10_GDP}{NAMA10GDP} \\
+        Euro-area Trade ($trade$) & Millions of Euro & \href{https://ec.europa.eu/eurostat/databrowser/bookmark/30053d9a-a5e9-42e8-abe6-5d9700efd145?lang=en&createdAt=2026-08-08T23:35:04Z}{DS045409} \\
+        Government Expenditures($govexp$) & Millions of Euro & \href{https://doi.org/10.2908/GOV_10A_MAIN}{GOV10AMAIN} \\
+        Investment($gfcf$) & Millions of Euro & \href{https://doi.org/10.2908/NAMA_10_GDP}{NAMA10GDP} \\
+        Inflation ($hicp$) & Annual Average Rate of Change & \href{https://doi.org/10.2908/PRC_HICP_AIND}{PRCHICPAIND} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Macroeconomic series used in the model along with their Eurostat IDs.}
+    \label{tab:eurostat_series}
+\end{table}
+
+The model consists of using the series defined in Table~\ref{tab:eurostat_series} to create variables and target as listed.
+
+\begin{itemize}
+    \item Target Variable: $growth_{t}$
+    \item Variable of interest:
+    \begin{description}
+        \item[$X_{[t,\,1]}$] ($vol$)
+        \item[$X_{[t,\,2]}$] ($trade$)
+        \item[$X_{[t,\,3]}$] ($vol \times trade$)
+    \end{description}
+    \item Control Variable:
+    \begin{description}
+        \item[$X_{[t,\,4]}$] ($gfcf$)
+        \item[$X_{[t,\,5]}$] ($hicp$)
+        \item[$X_{[t,\,6]}$] ($govexp$)
+    \end{description}
+\end{itemize}
+The sample includes Six European Union members that retained their own currencies.
+The panel is annual from 2005 to 2024 giving 120 country year observations.
+The reason that observations are taken from 2005 reflects three considerations.
+The countries need to share the same institutional setting.
+The Czech Republic, Hungary and Poland joined the European Union in May 2004 so 2005 is the first full calendar year in which they traded inside the single market alongside Denmark and Sweden.
+Romania joined in 2007 two year after the start of the sample.
+Its exchange rate against the euro and trade with the euro are are measured on the same basis.
+Currency markets in Central and Eastern Europe were much thinner before joining the EU.
+The early 2000s data reflect low trading volumes and more frequent central bank intervention than market behavior.
+The twenty year sample window from 2005 cover multiple separated financial stresses.
+Including the global financial crisis between 2008 to 2009, the euro area sovereign debt crisis between 2011 to 2012 and COVID-19 Shock from 2020.
+
+\vspace{\baselineskip}
+
+The dependent variable is real GDP growth taken as chain-linked volumes percentage change on the previous year.
+A euro denominated series is not used.
+It converts national GDP at the market exchange rate each year so a country whose currency weakens shows lower growth even it produced the same.
+Since exchange rate volatility is the explanatory variable using it would build the relationship under test into dependent variable.
+
+\vspace{\baselineskip}
+
+Euro area trade intensity is the sum of import and export from twenty euro area members as a percentage of GDP.
+There are no data for euro area aggregate for intra EU trade so the flows are taken from its international trades statistics and summed across the twenty partners.
+The three controls are included gross fixed capital formation, general government expenditure and annual average rate of change of the consumer price.
+Investment and government expenditure are expressed as shares of GDP using nominal GDP at current prices from the same source.
+All variables are observed in percentage unit so their coefficients can be compared.
+The exchange rate volatility is not observed directly as a published series. 
+It is estimated from ECB daily euro reference rates where will be describe next.
+
+\subsection{Exchange Rate Volatility Estimation}\label{subsec:vol_est}
+
+Exchange rate volatility is estimated by a GARCH model and asymmetric threshold-GARCH model. The forms can be shown as GARCH(1,1) and TGARCH(1,1) with an AR(1) mean equation and $t$-student innovations.
+It is following the specification in Latief and Lefen (\citeyear{latief_effect_2018})
+The Daily log returns are computed as:
+
+\begin{equation}\label{log_return}
+r_t = \ln\left(\frac{S_t}{S_{t-1}}\right)
+\end{equation}
+    
+where $S_t$ denotes units of national currency per euro. The mean and variance equations are
+
+\begin{equation}\label{mean}
+r_t = \beta_0 + \beta_1 r_{t-1} + u_t
+\end{equation}
+
+\begin{equation}\label{variance}
+\sigma^2_t = \omega + \alpha u^2_{t-1} + \beta \sigma^2_{t-1}    
+\end{equation}
+where $\omega$ is constant, $\alpha$ and $\beta$ are coefficients. 
+$\mu^2_{t-1}$ is the mean square of the previous time period.
+$\sigma^2_{t-1}$ is the variance of the previous time period.
+The Equation~\ref{mean} is the mean equation which represents the relationship between returns with its lag returns.
+The Equation~\ref{variance} is the variance to explain the volatility.
+\vspace{\baselineskip}
+
+A normal distribution is not used for the errors.
+Daily exchange rate returns contain more volatile movements than a normal distribution allows.
+But the $t$-student distribution can allow this through its degrees of freedom parameter.
+A threshold specification is estimated alongside the symmetric model.
+It allows a depreciation and an appreciation of the same size to have different effects on the following day's volatility.
+
+
+\begin{equation}\label{asymmetric}
+\sigma^2_t = \omega + \alpha u^2_{t-1} + \gamma u^2_{t-1} d_{t-1} + \beta \sigma^2_{t-1}
+\end{equation}
+
+where $d_{t-1}=1$ when $u_{t-1}<0$ and $0$ otherwise.
+Daily conditional volatility are aggregated to annual means to match the frequency of the macroeconomic data:
+
+\begin{equation}\label{annual_vol}
+VOL_{i,y} = \frac{1}{N_y}\sum_{t\in y}\sigma_{i,t}
+\end{equation}
+
+$N_y$ is the number of trading days in year $y$ for that currency.
+The averaging method makes little difference to the result.
+It matches the hypotheses which the average level of volatility a country faced during a year instead of how the volatility was distributed within it.
+Averaging also explains why the results barely move between two volatility models.
+Over around 250 trading days the differences between symmetric and threshold specifications cancels so the annual means are identical and follow the panel estimates.
+This stability reflects the aggregation.
+
+\subsection{Panel Regression Model}\label{subsec:reg_model}
+The estimated volatility series enters a panel growth regression:
+\begin{equation}\label{reg}
+growth_{i,t} = \beta_0 + \beta_1\,vol_{i,t} + \beta_2\,trade_{i,t} + \beta_3\,(vol_{i,t} \times trade_{i,t}) + \gamma'X_{i,t} + \varepsilon_{i,t}
+\end{equation}
+
+\begin{equation}\label{reg_2}
+growth_{i,t} = \beta_0 + \beta_1\,vol_{i,t} + \beta_2\,trade_{i,t} + \beta_3\,(vol_{i,t} \times trade_{i,t}) + \gamma'X_{i,t} + \mu_{i,t} + \lambda{i,t} + \varepsilon_{i,t}
+\end{equation}
+
+The Equation~\ref{reg} and Equation~\ref{reg_2} for country $i$ and time period $t$.
+$growth$ is real GDP growth, $trade$ is Euro-area trade intensity, $X$ collects the three controls including $gfcf$, $hicp$ and $govexp$ as investment, inflation and government expenditure.
+$\mu$ is the country fixed effects as dummy variable.
+This gives each country its own baseline so the model compares a country with itself over time instead of the other five.
+$\lambda$ is the year fixed effects as dummy variable.
+Year fixed effects absorb what affects all six countries in the same year.
+The year effects is important because these six countries trade mainly with the euro area and under the same shock periods.
+The volatility rose and output fell in all of them at once in 2009 and 2020.
+Without this year fixed effects cannot separate the two things apart.
+It reads the crisis year collapse in growth as an effect of volatility.
+The Czech Republic and 2005 are used as the baseline so $\mu_{CZ} = 0$ and $\lambda_{2005} = 0$.
+Every other country and year effect is measured against them.
+Which country and year are used makes no difference to the results.
+Results are reported for pooled OLS, only country fixed effects and both country fixed effects and year fixed effects.
+
+\subsubsection{Marginal Effects}\label{marg_ef2}
+
+Because the model contains an interaction the coefficient on volatility does not describe the effect of volatility in general.
+The effect of any other level of trade exposure is:
+
+\begin{equation}\label{marg_ef}
+\frac{\partial g}{\partial vol} = \beta_1 + \beta_3\, trade
+\end{equation}
+
+This is evaluated across the observed range of trade intensity and reported as marginal effects.
+Reporting only the coefficient would describe one point on this range instead of the relationship.
+
+\subsection{Estimation and Testing}\label{inf}
+
+Standard errors show how each coefficient is estimated.
+The usual formula assumes every observation carries independent information and that does not hold here.
+The model is dependence within a country over time.
+Growth in one year is related to growth next year and the estimated volatility is persistent so a country's errors are correlated to other years.
+And its dependence across countries within a year.
+All six countries trade mainly with the euro area and face the same shocks at the same time.
+The volatility rose and output fell in together in 2009 and 2020 so the errors are correlated across countries.
+Treating 120 observations as all independent evidence would overstate what the data can support and understate the true uncertainty around the estimates.
+
+\vspace{\baselineskip}
+
+Driscoll-Kraay standard errors are used because they allow for both forms of dependence.
+Cluster by country handles correlation within a country but it works by treating each country as one independent.
+So with six countries there are only six information which is too little for the method to give reliable standard errors.
+Newey-West standard errors handle correlation over time but not across countries.
+They also assume the data is one continuous series.
+Because the panel is stacked by country.
+Applying them means comparing Czech's last year with Denmark's first.
+
+\vspace{\baselineskip}
+
+Driscoll-Kraay standard errors make no assumption about how the errors are distributed.
+The normality of residuals is not needed.
+It is only for exact small sample tests and with 120 observation the result can be treated as large sample approximations.
+
+\subsubsection{Coefficient Significance}\label{meth_coef}
+
+Coefficients are tested for significance individually and jointly.
+Individual significance is tested with $t$-tests which ask whether a single coefficient different from zero.
+Individual tests are not enough because the model contains an interaction.
+Volatility appears on its own and multiplied by trade intensity.
+Testing them separately can also understate the relationship since the coefficients estimated together are not independent.
+Three joint hypotheses are tested each using the Driscoll-Kraay covariance matrix:
+\begin{itemize}
+    \item Trade intensity and the interaction are zero
+    \item Volatility and the interaction are zero
+    \item All three are zero
+\end{itemize}
+
+Each tested with a Wald F-test.
+Building the test on the Driscoll-Kraay covariance matrix means it carries the same robustness to serial correlation and cross country dependence as the standard errors
+\subsection{Post-fit Validation}\label{post_fit}
+The regression is checked after estimation to see whether the assumptions behind it hold.
+Ordinary Least Squares produces estimates either way and gives no warning when assumption fail.
+These tests work the other way from hypothesis tests.
+Rejecting means something is wrong with the model and not rejecting means the assumption holds.
+
+\begin{itemize}
+    \item \textbf{Function Form:} Ramsey RESET. 
+    This checks whether the relationship is really linear or whether something non-linear has left out.
+    
+    \item\textbf{Autocorrelation:} within country AR(1) on the residuals. 
+    This checks whether one year's error predict the next.
+    The residual is lagged within each country so no comparison crosses from one country to another.
+    A pooled Durbin-Watson or Breusch-Godfrey statistic would compare Czech's last year with Denmark first year.
+
+    \item\textbf{Heteroskedasticity:} Breusch-Pagan. 
+    This checks whether the errors are equally spread across observation or larger for some than others.
+
+    \item\textbf{Residual normality:} Jarque-Bera
+    
+    \item\textbf{Multicollinearity:} Variance Inflation Factor for all regressors.
+\end{itemize}
+
+\subsubsection{Variance Inflation Factors}
+
+Variance inflation factors measure how closely each regressor moves with the others.
+VIF is computed as:
+
+\begin{equation}\label{meth_vif}
+    \text{VIF}_j = \frac{1}{1- R_j^2}
+\end{equation}
+
+where $R_j^2$ comes from regressing $j$ on all the other regressors. 
+The closer two regressors move together the harder it is to tell which one is producing an effect to one instead of the other and less precise both estimates become.
+
+\vspace{\baselineskip}
+
+The factors reported are for the estimated model in which volatility and trade intensity are centred in the Equation~\ref{reg} and \ref{reg_2}.
+Volatility and trade intensity are centred by subtracting their sample means:
+
+\begin{equation}\label{centring}
+    \widetilde{vol}_{i,t} = vol_{i,t} - \overline{vol}, \qquad
+    \widetilde{trade}_{i,t} = trade_{i,t} - \overline{trade}
+\end{equation}
+
+Centring does not change the fit.
+The interaction coefficient, standard errors and residuals are identical either way but it changes what the individual coefficients mean.
+Without centring the coefficient on volatility describes a country with no euro area trade at all.
+It describes a country with average trade exposure when centred.
+
+\vspace{\baselineskip}
+
+When the interaction is formed before centring it shows higher factor.
+Because trade intensity stays well above zero so the product is close to volatility scaled by a fixed amount.
+The two move together.
+
