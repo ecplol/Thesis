@@ -313,113 +313,151 @@ The largest estimated effects at the ends of the range which is unreliable for t
 
 \vspace{\baselineskip}
 The figure shows no observations in the middle.
-
-
-\subsection{Diagnostic}\label{subsec:diagnostic}
-Jarque-Bera      stat=  53.78  p=0.0000   skew=-0.491  excess kurtosis=+3.129
-   H0: normal residuals. Rejection does NOT threaten consistency or unbiasedness
-   of the slopes -- only the exact small-sample t and F distributions, which the
-   Driscoll-Kraay standard errors replace anyway. Expected with macro data.
-
-\vspace{\baselineskip}
-
-Breusch-Pagan    stat=  39.15  p=0.1224
-   H0: constant error variance. Rejection would mean OLS standard errors are
-   wrong; the robust estimators already handle it.
-
-\vspace{\baselineskip}
-
-Ramsey RESET 2   F=  0.004  p=0.9479
-Ramsey RESET 3   F=  0.722  p=0.4887
-   H0: no omitted non-linearity. This is the one test where NON-rejection is the
-   good outcome rejection would say the functional form itself is wrong.
-
-\vspace{\baselineskip}
-
-Within-country AR(1)   rho=+0.1446  p=0.1177  n=114
-   H0: no first-order serial correlation in the residuals. Significant rho would
-   mean the Driscoll-Kraay lag truncation (maxlags=2) is too short.
-   Verdict: no evidence of serial correlation.
-
-
+The average trade intensity for Poland and Hungary at 47 and 85 percentage.
+There's no country falls between them.
+The figure do not shows the relationship followed the data but a straight line fitted between two groups.
+The lower end with Denmark, Sweden, Romania and Poland and upper end Hungary and The Czech Republic.
+The slope reflects the difference between two groups and the shape of the relationship between two groups comes from the linear specification.
 
 \subsection{Robustness}\label{sec:robustness}
 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{lcccc}
-        \toprule
-        \textbf{Variable} & \textbf{sd\_between} & \textbf{sd\_within} & \textbf{ratio} \\
-        \midrule
-        vol\_c & 0.179 & 0.140 & 1.278 \\
-        trade\_c & 27.941 & 5.466 & 5.112 \\
-        vol\_x\_trade & 4.309 & 3.582 & 1.203 \\
-        gfcf\_pct\_gdp & 2.692 & 2.319 & 1.161 \\
-        hicp & 1.275 & 3.172 & 0.402 \\
-        gov\_exp\_pct\_gdp & 5.617 & 2.324 & 2.417 \\
-    \end{tabular}
-    \caption{Cross-sectional Variation}
-    \label{tab:var}
-\end{table}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{lccc}
+    \small
+    \begin{tabular}{lccccc}
         \toprule
-        \textbf{Variable} & \textbf{GARCH} & \textbf{TGARCH} & \textbf{GARCH,No GFCF}\\
+        & & \multicolumn{2}{c}{Volatility $\times$ trade} & \multicolumn{2}{c}{Joint test} \\
+        \cmidrule(lr){3-4}\cmidrule(lr){5-6}
+        \textbf{Sample} & \textbf{N} & Coef. & $p$ & $F$ & $p$ \\
         \midrule
-        Volatility & +3.691 (p = 0.117) & +3.657 (p = 0.115) & $+5.6159$(p = 0.038)\\
-        Trade intensity & +0.051 (p = 0.071) & +0.052 (p = 0.066) & $+0.0227$ (p=0.516)\\
-        Volatility × trade & $-0.096$ (p = 0.046) & $-0.093$ (p = 0.051) & $-0.1384$(p=0.029)\\
-
-    \end{tabular}
-    \caption{Two-way fixed effects, Driscoll–Kraay standard errors, N = 120. Regression coefficients (standard errors omitted).}
-    \label{tab:two_way}
-\end{table}
-
-\begin{sidewaystable}
-    \centering
-    \sisetup{table-number-alignment=center}
-    \begin{tabular}{l
-                    S[table-format=3.0]
-                    S[table-format=-1.4] S[table-format=1.4]
-                    S[table-format=-1.4] S[table-format=1.4]
-                    S[table-format=-1.4] S[table-format=1.4]
-                    S[table-format=2.4]  S[table-format=1.4]}
-        \toprule
-        & & \multicolumn{2}{c}{Volatility}
-          & \multicolumn{2}{c}{Trade intensity}
-          & \multicolumn{2}{c}{Volatility $\times$ trade}
-          & \multicolumn{2}{c}{Joint test} \\
-        \cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10}
-        \textbf{Sample} & {\textbf{N}}
-        & {Coef.} & {$p$} & {Coef.} & {$p$} & {Coef.} & {$p$} & {$F$} & {$p$} \\
-        \midrule
-        Full sample                & 120 &  3.6911 & 0.1168 &  0.0510 & 0.0709 & -0.0961 & 0.0462 &  4.7214 & 0.0113 \\
-        Excl. DKK (pegged)         & 100 &  3.6796 & 0.2702 &  0.0519 & 0.0149 & -0.0961 & 0.0818 & 13.7952 & 0.0000 \\
-        Excl. crisis (2008--09, 2020) & 102 & -0.3114 & 0.8361 &  0.0528 & 0.1512 &  0.0016 & 0.9713 &  1.0778 & 0.3456 \\
-        2010--2024 only            &  90 & -2.2944 & 0.2290 &  0.1045 & 0.0011 &  0.0101 & 0.8484 &  5.8781 & 0.0045 \\
-        Excl. COVID (2020--21)     & 108 &  4.3601 & 0.0561 &  0.0662 & 0.0268 & -0.0940 & 0.0443 &  5.3945 & 0.0064 \\
-        \midrule
-        \multicolumn{10}{l}{\emph{Leave-one-country-out}} \\
-        \quad Drop CZ              & 100 &  5.3779 & 0.0163 &  0.0931 & 0.0015 & -0.1417 & 0.0040 & 10.1541 & 0.0001 \\
-        \quad Drop DK              & 100 &  3.6796 & 0.2702 &  0.0519 & 0.0149 & -0.0961 & 0.0818 & 13.7952 & 0.0000 \\
-        \quad Drop HU              & 100 &  3.9802 & 0.1442 & -0.0170 & 0.6048 & -0.1355 & 0.0105 &  3.9792 & 0.0231 \\
-        \quad Drop PL              & 100 &  2.8943 & 0.1686 &  0.0295 & 0.3591 & -0.0691 & 0.2076 &  1.9993 & 0.1431 \\
-        \quad Drop RO              & 100 &  1.0950 & 0.6699 &  0.0731 & 0.0714 & -0.0673 & 0.1703 &  2.1701 & 0.1218 \\
-        \quad Drop SE              & 100 &  4.4230 & 0.0676 &  0.0480 & 0.1780 & -0.1043 & 0.0339 &  3.4291 & 0.0380 \\
+        Full sample                     & 120 & $-0.096$ & 0.046 & 4.72  & 0.011 \\
+        Excluding crisis years          & 102 & $+0.002$ & 0.971 & 1.08  & 0.346 \\
+        2010--2024 only                 &  90 & $+0.010$ & 0.848 & 5.88  & 0.005 \\
+        Excluding COVID (2020--21)      & 108 & $-0.094$ & 0.044 & 5.39  & 0.006 \\
         \bottomrule
     \end{tabular}
-    \caption{Robustness checks. Two-way fixed effects re-estimated on subsamples,
-    Driscoll--Kraay standard errors. Coefficients are reported for centred volatility,
-    centred trade intensity and their interaction; centring is held at the full-sample
-    origin so the main effects stay comparable across rows. The joint test is a Wald
-    $F$ test of $\beta_{\text{trade}} = \beta_{\text{vol} \times \text{trade}} = 0$
-    under the Driscoll--Kraay covariance. Since Denmark is the pegged currency, the
-    rows \emph{Excl.\ DKK} and \emph{Drop DK} are the same subsample.}
-    \label{tab:robust}
-\end{sidewaystable}
+    \caption{Sensitivity to the sample period.
+    Driscoll--Kraay standard errors. Crisis years are 2008, 2009 and 2020.}
+    \label{tab:robust_period}
+\end{table}
 
-% The rotated table is a float and cannot be pinned with [H]. Without this barrier
-% it drifts past the end of the section and the conclusion is typeset ahead of it.
-\FloatBarrier
+The table \ref{tab:robust_period} re-estimates the model on different sample periods.
+The joint test presents the trade intensity and the interaction since this is the restriction rejected in table \ref{tab:wald}.
+This table shows the result depends almost on three years.
+The sample excludes 2008, 2009 and 2020 with 102 observations and the interaction changes from -0.096 to +0.002 with p value rising from 0.046 to 0.971.
+The joint test falls from F = 4.72 to F=1.08.
+While it is not inside crisis year the trade exposure does not matter on its own and the interaction.
+Restricting the sample between 2010 to 2024 gives the similar result for a different reason.
+That period excludes the global financial crisis but keep 2020 and the interaction is insignificant at p=0.848.
+Without the COVID years only changes almost nothing.
+The interaction is -0.094 at p=0.044 and it is unchanged from the baseline.
+This shows important comparison.
+Dropping COVID years between 2020 to 2021 change nothing and without crisis years turned the whole result.
+The finding is specific to the global financial crisis instead of periods of financial stress in general.
+
+\vspace{\baselineskip}
+
+This shows the consistent with figure \ref{fig:garchvol} where 2009 spike in volatility is several times the size of the period in 2020.
+If the relationship only becomes visible when volatility diverges across countries.
+There are no other periods in the sample show divergence of this size then a result that disappears once those years removed is expected.
+And it is not possible to say whether the relationship is absent outside crisis periods or only undetectable in sample of this size.
+
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{lccccc}
+        \toprule
+        & & \multicolumn{2}{c}{Volatility $\times$ trade} & \multicolumn{2}{c}{Joint test} \\
+        \cmidrule(lr){3-4}\cmidrule(lr){5-6}
+        \textbf{Country dropped} & \textbf{N} & Coef. & $p$ & $F$ & $p$ \\
+        \midrule
+        None (full sample)      & 120 & $-0.096$ & 0.046 & 4.72  & 0.011 \\
+        \midrule
+        Czech Republic          & 100 & $-0.142$ & 0.004 & 10.15 & 0.000 \\
+        Denmark                 & 100 & $-0.096$ & 0.082 & 13.80 & 0.000 \\
+        Hungary                 & 100 & $-0.136$ & 0.011 & 3.98  & 0.023 \\
+        Poland                  & 100 & $-0.069$ & 0.208 & 2.00  & 0.143 \\
+        Romania                 & 100 & $-0.067$ & 0.170 & 2.17  & 0.122 \\
+        Sweden                  & 100 & $-0.104$ & 0.034 & 3.43  & 0.038 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Sensitivity to sample composition}
+    \label{tab:robust_country}
+\end{table}
+
+The table \ref{tab:robust_country} removes one country at a time.
+The interaction is negative in every case ranges from -0.067to -0.142 so the direction of the relationship does not depend on any single country.
+Dropping three countries the Czech Republic, Hungary and Sweden leaves the interaction significant.
+And dropping Poland and Romania removes it the interaction falls to -0.069 to -0.067 with p value of 0.208 and 0.17.
+The joint test no longer rejects at p=0.143 and 0.122.
+
+\vspace{\baselineskip}
+
+The result depends heavily on Poland and Romania.
+Both sit in the middle of the trade intensity at 47 and 37 percentage of GDP and removing either of them leaves the sample with almost nothing between the low exposure and high exposure groups.
+With six countries the sensitivity is difficult to avoid.
+It means the estimate should be read as particular group instead of general relationship.
+Removing Denmark leaves the coefficient unchanged at -0.096 and p value increases to 0.082.
+The Danish krone barely moves against the euro so Denmark's volatility hardly changes from one year to the next.
+Its twenty observations is at the low exposure end of trade range but contribute only little information to what happens when volatility changes.
+Dropping Denmark changes nothing about the estimate but only the confidence interval around it.
+
+\vspace{\baselineskip}
+
+The final check replaces the volatility series with one estimated from threshold model which allows depreciations and appreciations to affect volatility differently.
+The result barely moves the interaction is similar to the baseline.
+This should not taken as strong evidence.
+The two models do produce different estimates day by day and the threshold specification produces higher volatility than the symmetric one following a sharp fall in the currency.
+Those differences are average over around 250 trading days to form the annual average and in the process most of them cancel out.
+The annual series the two models produce are almost identical and the panel estimates follow.
+The result is robust to the volatility specification.
+Whether asymmetry in daily volatility matter for growth is a separate question.
+This model design cannot explain since the aggregation removes the asymmetry before the panel regression.
+
+\subsection{Diagnostic}\label{subsec:diagnostic}
+
+The model is checked after estimation to test whether its assumptions are satisfied.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{llcc}
+        \toprule
+        \textbf{Test} & \textbf{Null hypothesis} & \textbf{Statistic} & \textbf{p} \\
+        \midrule
+        Ramsey RESET (2)     & No omitted non-linearity     & $F = 0.004$    & 0.948 \\
+        Ramsey RESET (3)     & No omitted non-linearity     & $F = 0.722$    & 0.489 \\
+        Breusch--Pagan       & Constant error variance      & $39.15$        & 0.122 \\
+        Within-country AR(1) & No serial correlation        & $\rho = 0.145$ & 0.118 \\
+        Jarque--Bera         & Normal residuals             & $53.78$        & 0.000 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Residual diagnostics}
+    \label{tab:diagnostics}
+\end{table}
+
+Ramsey's RESET presents no evidence of the functional form is misspecified with either second and third power of the fitted value.
+Rejection would have suggested something non-linear had been left out of the model.
+Homoskedasticity is an important indictor of spherical errors and can be tested using Breush-Pagan test.
+It finds no evidence of heteroskedasticity at p=0.122.
+A rejection would have carried little consequence in any case since the Driscoll-Kraay standard errors do not assume constant error variance.
+The autocorrelation test gives $\rho$ = 0.145 with p=0.118.
+The residual is lagged within each country so no comparison crosses from one country to another.
+114 of 120 observations are used since first year of each country has no lag to compare with.
+A significant coefficient would have suggested that the lag length of two in the Driscoll-Kraay estimator was too short.
+
+\vspace{\baselineskip}
+
+Jarque-Bera rejects with negative skew of -0.49 and excess kurtosis of 3.13.
+The residuals are not normally distributed.
+This does not affect the coefficient which remain unbiased and consistent without any assumption about the shape of the error distribution.
+Normality is important when it is for exact small sample t-tests and F-tests.
+The rejection is expected in given sample.
+Twenty years of European growth rate include 2009 and 2020 when output fell sharply in all six countries at once.
+Negative skew and heavy tails follow from those years instead of from anything wrong with model.
+
+
+
+

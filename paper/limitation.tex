@@ -1,0 +1,57 @@
+\section{Limitations}\label{limitation}
+
+The findings above are qualified by several of limitations.
+Some concerns what estimates can be taken to mean and others follow from the size of the sample.
+Exchange rate volatility and economic growth are jointly determined.
+A currency may become volatile because the economy is weakening or just as a volatile currency may weaken the economy.
+This design cannot tell which is happening.
+A negative coefficient is consistent.
+Janus and Riera-Crichton (\citeyear{thorsten_pdf_2015}) address with this finding a variable that moves exchange rate volatility but has no direct effect on growth.
+Their case using volatility of a country's commodity terms of trade and isolate the part of volatility that cannot be caused by growth.
+There are no similar variables in this analysis.
+The estimates in this thesis are association instead of the causal effects.
+The volatility is estimated and not observed.
+Volatility is not measured directly but estimated in a separate step.
+The uncertainty in that estimate is not passed on to the panel regression.
+The regression treats the annual volatility average as they were observed data when each carries its own estimation error.
+The result is significance overstated by an unknown margin.
+Bootstrapping the two steps together would address this.
+But it is not performed here.
+
+\vspace{\baselineskip}
+
+The sample is small in both dimensions.
+Six countries and twenty years is not much data to work with and it affects the standard errors.
+Driscoll-Kraay standard errors reply on having many time periods instead of many countries.
+Twenty years is at the low end of what the method needs.
+The estimator is consistent and it converges as the sample grows but whether well at this length of panel is a different question.
+So the p values presented should be read as approximate instead of exact values.
+
+\vspace{\baselineskip}
+
+The sample cannot support strong claims about stability.
+With six countries removing one country means removed a sixth of the observations.
+And result will be sensitive to which countries are included.
+The crisis years are similar because they are the only period which volatility differs heavily across the sample.
+Both problems cannot be fix within this design.
+The six countries at two ends of the range with nothing between two groups.
+Any estimate of how the effect changes across the range is on the linear form assumed by the specification instead of an observed variation.
+The model cannot detect the problem in the relationship where it has no observations.
+This follow from which currencies kept their own currencies and was not the study could arranged differently.
+
+\vspace{\baselineskip}
+
+There is limitation on how the variables are measured.
+The volatility is measured in nominal terms.
+Exchange rates against the euro are used as published without adjusting for relative price levels.
+This suits the mechanism the thesis examines since a firm contracting in euro faces the nominal rate but it means the measure cannot separate currency movement from price stability.
+A country with unstable inflation will show high nominal volatility.
+And the coefficient cannot tell the two apart.
+The correlation between volatility and inflation in this sample at 0.29 so the problem present.
+A real effective rate would avoid it but it is measuring the movement against the world instead of the euro.
+Also GARCH cannot tell a pegged currency.
+The model works by describing how volatility changes over time which requires volatility that can changes.
+A central bank holds currency close to fixed rate so there is nothing for the model to describe.
+This applies to Denmark in the whole sample period in weaker form.
+Also Romania under its managed float and Czech Republic exchange rate floor regime during 2013 to 2017.
+The estimates still capture how much each currency moved but for three of the six countries they do not describe a volatility process.
