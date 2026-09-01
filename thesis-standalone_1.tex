@@ -1,0 +1,386 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  WNE UW diploma thesis -- Annex D layout
+%%  SINGLE-FILE VERSION: no wnestyle.sty, no frontmatter.tex needed.
+%%  Just compile this file.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,a4paper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  PART A -- LAYOUT RULES (was wnestyle.sty)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ---------- 1. Page geometry: all margins 2.5 cm ------------
+\usepackage[a4paper,margin=2.5cm]{geometry}
+
+% ---------- 2. Font: Times New Roman, 12 pt -----------------
+% (12pt comes from \documentclass[12pt]{article})
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}   % Times text + Times math
+% If you compile with XeLaTeX/LuaLaTeX and have the real font, use instead:
+%   \usepackage{fontspec}\setmainfont{Times New Roman}
+
+% ---------- 3. Line spacing 1.5 -----------------------------
+\usepackage{setspace}
+\onehalfspacing
+
+% ---------- 4. Paragraphs: 1 cm indent, justified, no skip --
+\usepackage{indentfirst}      % indent the FIRST paragraph too
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{0pt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,array,multirow}
+\usepackage{caption}
+\usepackage{ragged2e}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+% ============================================================
+%  5. HEADINGS
+%     CHAPTER I  (Roman, caps, bold, centred, own page)
+%     1.1.  / 1.1.1.  (bold, flush left, Arabic)
+%     Manual look, but LaTeX still counts and builds the TOC.
+% ============================================================
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+% CHAPTER I  <newline>  <Title of the chapter>   -- both bold, centred
+\titleformat{\section}[display]
+  {\normalfont\bfseries\centering}
+  {CHAPTER \thesection}
+  {1\baselineskip}                       % 1 blank verse between the two lines
+  {}
+\titlespacing*{\section}{0pt}{0pt}{1.5\baselineskip}   % 1.5 verse below
+\newcommand{\sectionbreak}{\clearpage}                 % every chapter on a new page
+
+% 1.1. <Subheading> -- bold, flush left
+\titleformat{\subsection}[hang]
+  {\normalfont\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{1.5\baselineskip}{1.5\baselineskip}
+
+% 1.1.1. <Subheading>
+\titleformat{\subsubsection}[hang]
+  {\normalfont\bfseries}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\subsubsection}{0pt}{1.5\baselineskip}{1.5\baselineskip}
+
+% Unnumbered top-level headings in the CHAPTER style:
+% INTRODUCTION, CONCLUSIONS, BIBLIOGRAPHY, APPENDICES...
+\newcommand{\thesischapter}[1]{%
+  \clearpage
+  \begin{center}\bfseries\MakeUppercase{#1}\end{center}
+  \vspace{0.5\baselineskip}
+  \addcontentsline{toc}{section}{\MakeUppercase{#1}}%
+  \markboth{#1}{#1}%
+}
+
+% ============================================================
+%  6. TABLE OF CONTENTS
+% ============================================================
+\renewcommand{\cfttoctitlefont}{\hfill\bfseries\MakeUppercase}
+\renewcommand{\cftaftertoctitle}{\hfill\vspace{0.5\baselineskip}}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.}          % "CHAPTER I."
+\renewcommand{\cftsecpresnum}{CHAPTER~}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftsecnumwidth}{6.5em}          % room for "CHAPTER VIII."
+\setlength{\cftsubsecnumwidth}{2.6em}
+\setlength{\cftsubsubsecnumwidth}{3.4em}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+
+% ============================================================
+%  7. CAPTIONS
+%     Tables:   Table 1. <name>          (ABOVE the table)
+%     Figures:  Pic. 1. <name>           (above or below)
+%     Source:   Source: ...   (italic label, 10 pt)
+% ============================================================
+\captionsetup{
+  labelsep=period,        % "Table 1. Name" -- period, not colon
+  justification=raggedright,
+  singlelinecheck=false,
+  font={normalsize},
+  labelfont=normalfont,
+  skip=4pt
+}
+\renewcommand{\figurename}{Pic.}
+\renewcommand{\tablename}{Table}
+
+% \source{...} -- 10 pt line directly under a table/figure
+% flush left, full text width, "Source:" hanging out of the wrapped lines
+\newcommand{\source}[1]{%
+  \par\vspace{2pt}%
+  \begingroup
+    \fontsize{10}{12}\selectfont\setstretch{1}%
+    \noindent\parbox{\linewidth}{%
+      \raggedright\hangindent=1.4em\hangafter=1
+      \textit{Source:} #1\par}%
+  \endgroup\par\vspace{2pt}%
+}
+
+% ============================================================
+%  8. EQUATIONS: centred, numbered [1], [2], ... in square brackets
+% ============================================================
+\makeatletter
+\def\tagform@#1{\maketag@@@{[\ignorespaces#1\unskip\@@italiccorr]}}
+\makeatother
+\renewcommand{\theequation}{\arabic{equation}}
+
+% "where:" block under a formula -- 1 cm indent, single spacing
+\newenvironment{whereblock}
+  {\par\noindent where:\par\nopagebreak
+   \begingroup\setstretch{1}\begin{list}{}{%
+     \setlength{\leftmargin}{1cm}\setlength{\itemindent}{0pt}%
+     \setlength{\labelwidth}{0pt}\setlength{\labelsep}{0pt}%
+     \setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}%
+   \item\relax}
+  {\end{list}\endgroup\par}
+
+% ============================================================
+%  9. LISTS: dash-marked, starting at the left margin
+% ============================================================
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1cm,label=\textbullet,topsep=0pt,itemsep=0pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=1cm,topsep=0pt,itemsep=0pt,parsep=0pt}
+
+% ============================================================
+% 10. LIST OF TABLES / PICTURES / ANNEXES  (2-column, no dots)
+% ============================================================
+\renewcommand{\cftfigfont}{\normalfont}
+\renewcommand{\cfttabfont}{\normalfont}
+\renewcommand{\cftfigpresnum}{Pic.~}
+\renewcommand{\cfttabpresnum}{Table~}
+\renewcommand{\cftfigaftersnum}{.}
+\renewcommand{\cfttabaftersnum}{.}
+\addtolength{\cftfignumwidth}{1.6em}
+\addtolength{\cfttabnumwidth}{2.2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  PART B -- YOUR OWN PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{microtype}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc}
+%\usepackage{bbm}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{placeins}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+%\usepackage[style=apa,backend=biber]{biblatex}
+%\addbibresource{ref.bib}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  PART C -- FRONT MATTER (was frontmatter.tex)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ============================================================
+%  TITLE PAGE  (Annex D, p.1)
+% ============================================================
+\begin{titlepage}
+\setstretch{1}
+\centering
+{\large University of Warsaw\par}
+{\large Faculty of Economic Sciences\par}
+\vspace{2.5cm}
+{\large First name Surname\par}
+{\large Album N\textsuperscript{o}: 12345\par}
+\vspace{2.5cm}
+{\LARGE\bfseries Title of the degree thesis\par}
+\vspace{2cm}
+{\large Licencjat/Magister (bachelor/master) degree thesis\par}
+\vspace{0.5cm}
+{\large Field of the study: \dotfill\ *)\par}
+\vfill
+\begin{flushright}
+\large
+The thesis written under the supervision of\\
+title/degree First name Surname\\
+from (name of the supervisor's unit)
+\end{flushright}
+\vfill
+{\large WNE UW\par}
+{\large Warsaw, July 2020\par}
+\end{titlepage}
+
+% ============================================================
+%  DECLARATIONS
+% ============================================================
+\clearpage
+\setstretch{1.5}
+
+\begin{center}\textbf{\textit{Declaration of the supervisor}}\end{center}
+\vspace{0.5\baselineskip}
+
+I declare that the following thesis was written under my supervision and I
+state that it meets all criterias to be submitted for the procedure of
+academic degree award.
+
+*I declare that my participation in the scientific article, which is a part
+of this thesis is \dots\%, while the supplement to the thesis was written
+independently by the graduate~(s).
+
+\vspace{0.5\baselineskip}
+{\small\textit{* cross out if not applicable}}
+
+\vspace{2\baselineskip}
+\noindent Date \hfill Signature of the Supervisor
+\vspace{2\baselineskip}
+
+\begin{center}\textbf{\textit{Declaration of the author of the thesis**}}\end{center}
+\vspace{0.5\baselineskip}
+
+Aware of the legal responsibility, I declare that I am the sole author of the
+following thesis and that the thesis is free from any content that constitutes
+copyright infringement or has been acquired contrary to applicable laws and
+regulations.
+
+I also declare that the thesis has never been a subject of degree-awarding
+procedures in any higher education institution.
+
+Moreover I declare that the attached version of the thesis is identical with
+the enclosed electronic version.
+
+* I declare that my*** participation in the scientific article, which is part
+of this thesis is \dots\% (not less than 60\%), while the supplement to the
+thesis was written by me***.
+
+\vspace{0.5\baselineskip}
+{\small\textit{* cross out if not applicable}}
+
+\vspace{2\baselineskip}
+\noindent Date \hfill Signature of the Author
+
+\vspace{\baselineskip}
+{\small\textit{** each of the co-authors of the thesis submit the statement separately.}\par
+\textit{*** in the case of co-author of thesis, substantive and percentage
+contribution should be declared.}}
+
+% ============================================================
+%  SUMMARY / KEY WORDS / CLASSIFICATION / POLISH TITLE
+% ============================================================
+\clearpage
+\begin{center}\textbf{Summary}\end{center}
+\vspace{0.5\baselineskip}
+\noindent   % justified, NO tab, max 800 characters with spaces
+The thesis concerns / covers / presents issues\dots
+
+\vspace{2\baselineskip}
+\begin{center}\textbf{Key words}\end{center}
+\vspace{0.5\baselineskip}
+\begin{center}
+keyword one, keyword two, keyword three, keyword four, keyword five
+\end{center}
+
+\vspace{2\baselineskip}
+\begin{center}\textbf{Field of the thesis (codes according to the Erasmus program)}\end{center}
+\begin{center}Economics (14300)\end{center}
+
+\vspace{2\baselineskip}
+\begin{center}\textbf{Thematic classification}\end{center}
+\begin{center}\dots\end{center}
+
+\vspace{2\baselineskip}
+\begin{center}\textbf{The title of the thesis in Polish}\end{center}
+\begin{center}\textit{Tytu\l{} pracy po polsku}\end{center}
+
+% ============================================================
+%  TABLE OF CONTENTS
+% ============================================================
+\clearpage
+\renewcommand{\contentsname}{Table of contents}
+\begingroup
+\setstretch{1}
+\tableofcontents
+\endgroup
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  PART D -- THE THESIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ============ INTRODUCTION (unnumbered chapter) ==============
+\thesischapter{Introduction}
+
+Each paragraph of the text of the thesis begins with a tab equal to 1~cm.
+All margins equal 2.5~cm; font Times New Roman, 12 points.
+
+% ---- your chapters: \input{intro} etc. go here --------------
+\section{Theoretical background}
+
+Chapter text, indented 1~cm, justified, 1.5 line spacing.
+
+\subsection{Subheading in bold at the left margin}
+
+Section text.
+
+\subsubsection{Lower-level subheading}
+
+Subsection text.
+
+% ---------- TABLE: caption ABOVE, source 10 pt BELOW ----------
+\begin{table}[H]
+\caption{Compilation of basic values of the parameters of assessment of
+companies in European countries in 2000--2004}
+\label{tab:params}
+\setstretch{1}
+\centering
+\begin{tabular}{clrrrr}
+\toprule
+\textbf{Lp.} & \textbf{Parameter} & \textbf{2000} & \textbf{2001} & \textbf{2003} & \textbf{2004}\\
+\midrule
+1. & Parameter 1 & 1200 & 123   & 234 & 345\\
+2. & Parameter 2 & 234  & 234   & 67  & 543\\
+\bottomrule
+\end{tabular}
+\source{Own study, based on: J. Kowalski, ``Parameters of assessment of
+companies in European countries'', PWN, Warszawa 2005, p.~234.}
+\end{table}
+
+Refer to Table~\ref{tab:params} by number -- never ``the table below''.
+
+% ---------- FIGURE: caption ABOVE, source 10 pt BELOW ---------
+\begin{figure}[H]
+\centering
+\caption{Wykres zmian parametru osi pionowej w latach 2000--2004}
+\label{fig:trend}
+\includegraphics[width=0.6\textwidth]{example-image}
+\source{Own study, based on: J. Nowak, PWN, Warszawa 2005, p.~23.}
+\end{figure}
+
+% ---------- FORMULA: centred, numbered [1] --------------------
+\begin{equation}\label{eq:x}
+X \equiv \frac{\text{Parameter } Y}{\text{Parameter } Z}
+\end{equation}
+
+\begin{whereblock}
+Parameter $Y$ -- parameter located in the numerator\\
+Parameter $Z$ -- parameter located in the denominator.
+\end{whereblock}
+
+\section{Empirical analysis}
+
+\subsection{Data}
+Text.
+
+% ============ BACK MATTER ====================================
+\thesischapter{Conclusions}
+Text.
+
+\thesischapter{Bibliography}
+% \nocite{*}
+% \printbibliography[heading=none]
+
+\thesischapter{Annexes}
+
+\noindent\textbf{Annex 1. Questionnaire type A}\par
+Text.
+
+\end{document}

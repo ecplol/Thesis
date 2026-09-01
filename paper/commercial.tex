@@ -8,6 +8,51 @@ We will discuss how each currency has been managed since 2005 and how they are d
 
 \vspace{\baselineskip}
 
+\begin{figure}[htbp]
+\centering
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[x=1.0cm, y=1cm]
+% estimation window
+\fill[black!8] (6.5,-2.45) rectangle (12.6,2.15);
+\node[font=\scriptsize\itshape, black!60, anchor=north east] at (12.6,-2.5)
+  {estimation sample 2005--2024};
+% koruna floor span
+\draw[line width=3pt, black!35] (9.4,0) -- (10.8,0);
+% axis
+\draw[->, thick] (-0.6,0) -- (13.5,0);
+% ticks and years
+\foreach \x/\lab in {0/1979, 2.2/1992, 4.0/1999, 6.0/2004, 7.6/2007, 9.4/2013, 12.6/2024}
+  {\draw[thick] (\x,-0.14) -- (\x,0.14);
+   \node[font=\footnotesize, below=3pt] at (\x,0) {\lab};}
+\draw[thick] (5.0,-0.09) -- (5.0,0.09);
+\draw[thick] (10.8,-0.09) -- (10.8,0.09);
+% euro area institutions, above the line
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (0,0.55)
+  {EMS and ERM established};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (2.2,1.35)
+  {Maastricht Treaty};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.5cm] at (4.0,0.55)
+  {Euro introduced; ERM~II replaces ERM};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (6.0,1.35)
+  {CZ, HU, PL join the EU};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (7.6,0.55)
+  {RO joins the EU};
+% national currency decisions, below the line
+\node[font=\scriptsize, align=center, anchor=north, text width=2.3cm] at (2.2,-1.35)
+  {Danish opt-out negotiated};
+\node[font=\scriptsize, align=center, anchor=north, text width=2.3cm] at (4.0,-0.6)
+  {DK joins ERM~II};
+\node[font=\scriptsize, align=center, anchor=north, text width=2.5cm] at (5.0,-1.35)
+  {Swedish referendum rejects the euro (2003)};
+\node[font=\scriptsize, align=center, anchor=north, text width=2.6cm] at (10.1,-0.6)
+  {CNB koruna floor 2013--2017};
+% row labels
+
+\end{tikzpicture}
+\caption{Calendar of European monetary integration and the estimation window (2005--2024).}
+\label{fig:timeline}
+\end{figure}
+
 Before turning to the main point, it is worth setting out the historical background and the conditions for joining the euro.
 The monetary European Monetary was set up in 1979 to keep the exchange rate stable between members and encourage central banks working together (\cite{council_of_the_european_union_joining_2026}).
 Currencies were kept within the agreed limits through Exchange Rate Mechanism.
@@ -16,7 +61,30 @@ This system ended in 1999 when euro is introduced and the monetary policy passed
 ERM II replaced the old mechanism which use as the framework for countries preparing to adopt the euro.
 
 \vspace{\baselineskip}
-
+\begin{table}[htbp]
+\centering\small
+\caption{Convergence criteria and the position of the six non-euro member states.}
+\label{tab:convergence}
+\begin{tabular}{L{2.4cm} L{4.2cm} c c c c c c}
+\toprule
+\multirow{2}{*}{\textbf{Criterion}} & \multirow{2}{*}{\textbf{Reference value}} & \multicolumn{6}{c}{\textbf{Fulfilled (2024)}} \\
+\cmidrule(l){3-8}
+ &  & CZ & DK & HU & PL & RO & SE \\
+\midrule
+Price stability & Inflation $\leq$ 1.5 pp above the three best performers & \emph{verify} & \emph{verify} & \emph{verify} & \emph{verify} & \emph{verify} & Yes \\
+\addlinespace
+Public finances & Deficit $<$ 3\% of GDP and debt $<$ 60\% of GDP & \emph{verify} & \emph{verify} & \emph{verify} & \emph{verify} & \emph{verify} & Yes \\
+\addlinespace
+Long-term interest rate & $\leq$ 2 pp above the three best performers & Yes & \emph{verify} & \emph{verify} & \emph{verify} & \emph{verify} & Yes \\
+\addlinespace
+Exchange rate stability & At least two years in ERM~II & No & Yes & No & No & No & No \\
+\midrule
+\multicolumn{2}{l}{Treaty obligation to adopt the euro} & Yes & No (opt-out) & Yes & Yes & Yes & Yes \\
+\multicolumn{2}{l}{Public support for adoption (\%)} & 49 & \emph{verify} & \emph{verify} & 47 & \emph{verify} & \emph{verify} \\
+\bottomrule
+\end{tabular}
+\caption*{\footnotesize Source: European Commission (2024) Convergence Report; Council of the European Union (2026).}
+\end{table}
 There are four conditions known as convergence criteria which a country must meet before adopt the euro.
 It includes stable exchange rates where their inflation must be no more than 1.5 percentage points above the average of the top performing members.
 The country needs stable public finances and sustainable interest rate. 
