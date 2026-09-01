@@ -1,16 +1,5 @@
-\section{Methodology}\label{sec:methodology}
+\section{METHODOLOGY}\label{sec:methodology}
 
-The proposed methodology of this paper has these components:
-
-\begin{itemize}
-    \item Data Collection
-    \item Exchange Rate Volatility Estimation
-    \item Panel Regression Model
-    \item Estimation and Testing
-    \item Post-fit Validation
-\end{itemize}
-
-Each component is detailed in the following subsections.
 
 \subsection{Data Collection}\label{subsec:data_col}
 
@@ -19,6 +8,8 @@ Observations for all series run from 2005 to 2024 and the frequency is annual.
 All series are sourced from the Eurostat database.
 \begin{table}[H]
     \centering
+    \caption{Macroeconomic series used in the model}
+    \vspace{\baselineskip}
     \small
     \begin{tabular}{lll}
         \toprule
@@ -31,10 +22,10 @@ All series are sourced from the Eurostat database.
         Inflation ($hicp$) & Annual Average Rate of Change & \href{https://doi.org/10.2908/PRC_HICP_AIND}{PRCHICPAIND} \\
         \bottomrule
     \end{tabular}
-    \caption{Macroeconomic series used in the model along with their Eurostat IDs.}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Eurostat. Note: Series are used in the model along with their Eurostat IDs.}
     \label{tab:eurostat_series}
 \end{table}
-
 The model consists of using the series defined in Table~\ref{tab:eurostat_series} to create variables and target as listed.
 
 \begin{itemize}
@@ -204,11 +195,15 @@ Individual tests are not enough because the model contains an interaction.
 Volatility appears on its own and multiplied by trade intensity.
 Testing them separately can also understate the relationship since the coefficients estimated together are not independent.
 Three joint hypotheses are tested each using the Driscoll-Kraay covariance matrix:
+
+\vspace{\baselineskip}
+
 \begin{itemize}
     \item Trade intensity and the interaction are zero
     \item Volatility and the interaction are zero
     \item All three are zero
 \end{itemize}
+\vspace{\baselineskip}
 
 Each tested with a Wald F-test.
 Building the test on the Driscoll-Kraay covariance matrix means it carries the same robustness to serial correlation and cross country dependence as the standard errors
@@ -219,19 +214,20 @@ These tests work the other way from hypothesis tests.
 Rejecting means something is wrong with the model and not rejecting means the assumption holds.
 
 \begin{itemize}
+    \vspace{\baselineskip}
     \item \textbf{Function Form:} Ramsey RESET. 
     This checks whether the relationship is really linear or whether something non-linear has left out.
-    
+    \vspace{\baselineskip}
     \item\textbf{Autocorrelation:} within country AR(1) on the residuals. 
     This checks whether one year's error predict the next.
     The residual is lagged within each country so no comparison crosses from one country to another.
     A pooled Durbin-Watson or Breusch-Godfrey statistic would compare Czech's last year with Denmark first year.
-
+    \vspace{\baselineskip}
     \item\textbf{Heteroskedasticity:} Breusch-Pagan. 
     This checks whether the errors are equally spread across observation or larger for some than others.
-
+    \vspace{\baselineskip}
     \item\textbf{Residual normality:} Jarque-Bera
-    
+    \vspace{\baselineskip}
     \item\textbf{Multicollinearity:} Variance Inflation Factor for all regressors.
 \end{itemize}
 

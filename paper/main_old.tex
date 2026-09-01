@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+
+\usepackage[T1]{fontenc} 
+\usepackage{mathptmx}
+\usepackage{fontspec}\setmainfont{Times New Roman}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}      % indent the FIRST paragraph too
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{0pt}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,array,multirow}
+\usepackage{caption}
+\usepackage{ragged2e}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{hyperref}
+ 
+\usepackage{microtype}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{bbm}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{rotating}   % sidewaystable, for the wide robustness table
+\usepackage{placeins}   % \FloatBarrier before the next section begins
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+ 
+\usepackage[style=apa,backend=biber]{biblatex}
+\addbibresource{ref.bib}
+ 
+\hypersetup{
+    breaklinks,
+    colorlinks,
+    allcolors=black,
+    urlcolor=blue,
+}
+ 
+%%==================================================================
+\begin{document}
+ 
+\begingroup\setstretch{1}\tableofcontents\endgroup
+ 
+\thesischapter{Introduction}
+\input{intro}
+ 
+\input{theory}
+\input{commercial}
+\input{methodology}
+\input{results}
+\input{limitation}
+ 
+\thesischapter{Conclusions}
+\input{conclusion}
+ 
+\thesischapter{Bibliography}\label{sec:bibliography}
+\nocite{*}
+\printbibliography[heading=none, keyword=paper]
+ 
+\input{appendix}
+ 
+\end{document}

@@ -28,10 +28,10 @@ product term, which drops from severe to negligible.
 
 import glob
 import os
-
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
+
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 

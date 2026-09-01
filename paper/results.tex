@@ -1,8 +1,17 @@
-\section{Results}\label{sec:results}
+\section{RESULTS}\label{sec:results}
 \subsection{Descriptive Statistics}\label{subsec:data_exam}
+
+Before we going to the estimation results.
+We will describe the data and how it behaves.
+The panel covers the six European Union members that kept their own currency over the period 2005 to 2024.
+All variables are expressed in percentage terms so that the estimated coefficients have a direct interpretation in percentage.
+No observation is missing and no outlying values are removed.
+The table \ref{tab:descriptive} summarizes the distribution of each series.
 
 \begin{table}[H]
     \centering
+    \caption{Descriptive statistics for the estimation sample}
+    \vspace{\baselineskip}
     \begin{tabular}{lccccc}
         \toprule
         \textbf{Variable} & \textbf{N} & \textbf{Mean} & \textbf{SD} & \textbf{Min} & \textbf{Max} \\
@@ -15,9 +24,11 @@
         $govexp$ & 120 & 45.91 & 5.65 & 33.50 & 57.90 \\
         \bottomrule
     \end{tabular}
-    \caption{Descriptive statistics for the estimation sample}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study.}
     \label{tab:descriptive}
 \end{table}
+\FloatBarrier
 
 The table \ref{tab:descriptive} presents the summary statistics for the estimation sample of 120 country and year observation.
 The range of the exchange rate volatility which runs from 0.01 to 0.99 percentage measured as the annual mean of daily conditional standard deviations.
@@ -31,7 +42,7 @@ And the upper end belongs to the freely floating currencies in crisis years.
 The spread of trade intensity also stand out.
 The standard deviation of 26.19 is half of its mean at 51.6 which is unusually large for macroeconomic variables.
 This shows in the differences between countries instead of the movement over time.
-The range from from 23.56 to 100.82 percentage of GDP runs from Denmark and Sweden at the lower end to Czech Republic and Hungry at the upper end.
+The range from from 23.56 to 100.82 percentage of GDP runs from Denmark and Sweden at the lower end to Czech Republic and Hungary at the upper end.
 It shows above one hundred percentage are not error. 
 Trade counts the full value of goods crossing border which GDP counts only the value added at domestic so a country that import parts and re-export the assembled product count the same value twice in the trade.
 
@@ -43,6 +54,8 @@ Inflation ranges from -1.1 to 17 percentage covering both falling prices and the
 
 \begin{table}[H]
     \centering
+    \caption{Variance inflation factors for the regressors.}
+    \vspace{\baselineskip}
     \begin{tabular}{lcc}
         \toprule
         \textbf{variable} & \textbf{centered} & \textbf{raw}\\
@@ -55,7 +68,8 @@ Inflation ranges from -1.1 to 17 percentage covering both falling prices and the
         $govexp$               &      1.42  & 1.42\\
         \bottomrule
     \end{tabular}
-    \caption{Variance inflation factors for the regressors.}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study.}
     \label{tab:vif}
 \end{table}
 
@@ -83,10 +97,13 @@ The correlation between volatility and inflation is 0.29 so nominal exchange rat
 The correlation between volatility and growth is -0.08 close to zero which is what makes the conditional specification necessary.
 
 \begin{figure}[H]
-\label{fig:garchvol}
     \centering
-    \includegraphics[width=0.75\textwidth]{fig/volatility.png}
     \caption{Annual Mean Conditional Volatility from GARCH(1,1)}
+    \vspace{\baselineskip}
+    \includegraphics[width=0.75\textwidth]{fig/volatility.png}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study.}
+    \label{fig:garchvol}
 \end{figure}
 
 Figure~\ref{fig:garchvol} presents the annual mean conditional volatility of each currency against the euro obtained from the GARCH(1,1).
@@ -118,8 +135,21 @@ The koruna during this period is not a floating currency but interrupted as mana
 \subsection{Regression Results}\label{subsec:panel}
 
 
+
+
+The table \ref{tab:panel_results} presents the regression under three specifications.
+The first model pooled all 120 observations and treats them as one population.
+The second model put in country as dummy variable.
+The third model put in country and year together as dummy variables.
+The standard errors are Driscoll-Kraay for this table.
+We also computed the p-values under ordinary, Newey-West and cluster robust estimators (See Appendix \ref{appendC} for further details).
+The estimates change very differently between specifications.
+It is worth explaining the result since it determines which specification to use.
+
 \begin{table}[H]
     \centering
+    \caption{Panel regression results.}
+    \vspace{\baselineskip}
     \small
     \begin{tabular}{lccc}
         \toprule
@@ -146,21 +176,11 @@ The koruna during this period is not a floating currency but interrupted as mana
         Wald test & $F(6,113) = 3.337^{***}$ & $F(11,108) = 5.222^{***}$ & $F(30,89) = 10.962^{***}$ \\
         \bottomrule
     \end{tabular}
-    \caption{Panel regression results. Driscoll--Kraay standard errors in
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study. Note: Driscoll--Kraay standard errors in
     parentheses. *** $p<0.01$, ** $p<0.05$, * $p<0.1$.}
     \label{tab:panel_results}
 \end{table}
-
-The table \ref{tab:panel_results} presents the regression under three specifications.
-The first model pooled all 120 observations and treats them as one population.
-The second model put in country as dummy variable.
-The third model put in country and year together as dummy variables.
-The standard errors are Driscoll-Kraay for this table.
-We also computed the p-values under ordinary, Newey-West and cluster robust estimators (See Appendix \ref{appendC} for further details).
-The estimates change very differently between specifications.
-It is worth explaining the result since it determines which specification to use.
-
-\vspace{\baselineskip}
 
 The model 1 uses stacked panel of 120 country year rows and without fixed effects.
 It shows nothing is significant except government expenditure.
@@ -186,7 +206,7 @@ This model fits rises to 78.7 percentage.
 
 \vspace{\baselineskip}
 
-The coefficient on volatility changes sign between the two models which requires explanation.
+The coefficient on volatility changes sign between the two models.
 The country fixed effects model compares each country with itself over time which removes everything fixed about the country itself.
 Country effects cannot remove anything that hit all six countries in the same time which is the financial crisis.
 In 2009 exchange rate volatility rose in every floating currency in the sample and output fell in every country.
@@ -221,9 +241,16 @@ It does not explain what happens at higher or lower levels of exposure.
 
 
 \subsubsection{Joint Significance of Coefficients}\label{joint_sign}
+
+The volatility and trade intensity each appear twice in the model as their own and inside the interaction.
+Whether a variable matter is a claim about two coefficients together.
+Testing them one at a time can miss a relationship since coefficients estimated together are not independent.
+Table \ref{tab:wald} presents Wald tests for three restrictions computed from the Driscoll-Kraay covariance matrix.
+
 \begin{table}[H]
     \centering
-    \small
+    \caption{Wald tests of joint restrictions}
+    \vspace{\baselineskip}
     \setlength{\tabcolsep}{5pt}
     \begin{tabular}{llccc}
         \toprule
@@ -244,17 +271,11 @@ It does not explain what happens at higher or lower levels of exposure.
                    & p  & 0.011     & 0.133       & 0.010 \\
         \bottomrule
     \end{tabular}
-    \caption{Wald tests of joint restrictions, computed from the Driscoll--Kraay
-    covariance matrix.}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study. Note: Computed from Driscoll--Kraay covariance matrix.}
     \label{tab:wald}
 \end{table}
 
-The volatility and trade intensity each appear twice in the model as their own and inside the interaction.
-Whether a variable matter is a claim about two coefficients together.
-Testing them one at a time can miss a relationship since coefficients estimated together are not independent.
-Table \ref{tab:wald} presents Wald tests for three restrictions computed from the Driscoll-Kraay covariance matrix.
-
-\vspace{\baselineskip}
 
 In model 1 presents no rejection. The three restrictions p-value are 0.466, 0.481 and 0.638.
 It shows they are jointly insignificant. 
@@ -278,10 +299,13 @@ The joint test also does not depend on whether the variables are centred.
 \subsubsection{Marginal Effect of Volatility}\label{sec:mar_eff_vol}
 
 \begin{figure}[H]
-\label{fig:marg_eff}
     \centering
+    \caption{Marginal effect of volatility on growth by euro area trade intensity}
+    \vspace{\baselineskip}
     \includegraphics[width=0.75\textwidth]{fig/marginal_effect.png}
-    \caption{Marginal effect of volatility on growth by euro area trade intensity with 95\% confidence intervals}
+    \label{fig:marg_eff}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own Study. Note: With 95\% confidence intervals}
 \end{figure}
 
 The joint tests we discussed shows that trade exposure matters but no explanation.
@@ -290,7 +314,7 @@ The effect of volatility is not a single number which it changes with a country'
 This figure \ref{fig:marg_eff} presents the marginal effect of volatility on growth where the line slopes downward across the whole range.
 Denmark and Sweden at the left end at around 26 percentage of GDP.
 The estimated effect of volatility on growth is positive around 6.3 points.
-It fails to 1.1 points by the time trade intensity is near 79 percentage and crosses zero at 90 percentage.
+It falls to 1.1 points by the time trade intensity is near 79 percentage and crosses zero at 90 percentage.
 Hungary and the Czech Republic at 85 and 88 percentage respectively.
 The shape is expected where a country trade little with the euro area and a moving currency mostly absorbs shocks and the relationship with growth is positive.
 The trade increases when the cost volatility imposes on trade grows and offsets the benefit.
@@ -321,10 +345,15 @@ The slope reflects the difference between two groups and the shape of the relati
 
 \subsection{Robustness}\label{sec:robustness}
 
+The estimates presented only on the full 2005 to 2024 sample.
+We will re-estimate the model on different sample periods and composition to see whether the result is sensitive to the sample.
+There are three alternative samples which exclude the crisis years, covering from 2010 to 2024 and exclude the COVID years.
+It is keeping the specification and the estimator.
 
 \begin{table}[H]
     \centering
-    \small
+    \caption{Sensitivity to the sample period.}
+    \vspace{\baselineskip}
     \begin{tabular}{lccccc}
         \toprule
         & & \multicolumn{2}{c}{Volatility $\times$ trade} & \multicolumn{2}{c}{Joint test} \\
@@ -337,8 +366,8 @@ The slope reflects the difference between two groups and the shape of the relati
         Excluding COVID (2020--21)      & 108 & $-0.094$ & 0.044 & 5.39  & 0.006 \\
         \bottomrule
     \end{tabular}
-    \caption{Sensitivity to the sample period.
-    Driscoll--Kraay standard errors. Crisis years are 2008, 2009 and 2020.}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study. Note: Driscoll--Kraay standard errors. Crisis years are 2008, 2009 and 2020.}
     \label{tab:robust_period}
 \end{table}
 
@@ -366,7 +395,8 @@ And it is not possible to say whether the relationship is absent outside crisis 
 
 \begin{table}[H]
     \centering
-    \small
+    \caption{Sensitivity to sample composition}
+    \vspace{\baselineskip}
     \begin{tabular}{lccccc}
         \toprule
         & & \multicolumn{2}{c}{Volatility $\times$ trade} & \multicolumn{2}{c}{Joint test} \\
@@ -383,7 +413,9 @@ And it is not possible to say whether the relationship is absent outside crisis 
         Sweden                  & 100 & $-0.104$ & 0.034 & 3.43  & 0.038 \\
         \bottomrule
     \end{tabular}
-    \caption{Sensitivity to sample composition}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study. Note: Driscoll--Kraay standard errors.}
+    
     \label{tab:robust_country}
 \end{table}
 
@@ -417,30 +449,30 @@ Whether asymmetry in daily volatility matter for growth is a separate question.
 This model design cannot explain since the aggregation removes the asymmetry before the panel regression.
 
 \subsection{Diagnostic}\label{subsec:diagnostic}
-
-The model is checked after estimation to test whether its assumptions are satisfied.
-
 \begin{table}[H]
     \centering
-    \small
+    \caption{Residual diagnostics}
+    \vspace{\baselineskip}
     \begin{tabular}{llcc}
         \toprule
         \textbf{Test} & \textbf{Null hypothesis} & \textbf{Statistic} & \textbf{p} \\
         \midrule
         Ramsey RESET (2)     & No omitted non-linearity     & $F = 0.004$    & 0.948 \\
         Ramsey RESET (3)     & No omitted non-linearity     & $F = 0.722$    & 0.489 \\
-        Breusch--Pagan       & Constant error variance      & $39.15$        & 0.122 \\
+        Breusch-Pagan       & Constant error variance      & $39.15$        & 0.122 \\
         Within-country AR(1) & No serial correlation        & $\rho = 0.145$ & 0.118 \\
-        Jarque--Bera         & Normal residuals             & $53.78$        & 0.000 \\
+        Jarque-Bera         & Normal residuals             & $53.78$        & 0.000 \\
         \bottomrule
     \end{tabular}
-    \caption{Residual diagnostics}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study. Note: Rejection of the null hypothesis at 5\% significance level is indicated by $p<0.05$.}
     \label{tab:diagnostics}
 \end{table}
 
+The model is checked after estimation to test whether its assumptions are satisfied.
 Ramsey's RESET presents no evidence of the functional form is misspecified with either second and third power of the fitted value.
 Rejection would have suggested something non-linear had been left out of the model.
-Homoskedasticity is an important indictor of spherical errors and can be tested using Breush-Pagan test.
+Homoskedasticity is an important indicator of spherical errors and can be tested using Breusch-Pagan test.
 It finds no evidence of heteroskedasticity at p=0.122.
 A rejection would have carried little consequence in any case since the Driscoll-Kraay standard errors do not assume constant error variance.
 The autocorrelation test gives $\rho$ = 0.145 with p=0.118.

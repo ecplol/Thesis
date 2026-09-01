@@ -1,8 +1,10 @@
-\section{Appendix}\label{appendix}
+\thesissection{List of Appendices}\label{sec:appendix_list}
 \subsection{Appendix A}\label{appendA}
 
 \begin{table}[H]
     \centering
+    \caption{Correlation matrix}
+    \vspace{\baselineskip}
     \begin{tabular}{lrrrrrr}
         \toprule
         & (1) & (2) & (3) & (4) & (5)&(6) \\
@@ -15,12 +17,15 @@
         $govexp$ (6)& -0.36 & -0.00 & -0.22 & -0.36 & -0.16 & 1.00 \\
         \bottomrule
     \end{tabular}
-    \caption{Correlation matrix}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study.}
 \end{table}
 
 \subsection{Appendix B}\label{appendB}
 \begin{table}[H]
     \centering
+    \caption{GARCH(1,1)-t estimates.}
+    \vspace{\baselineskip}
     \begin{tabular}{lcccc}
         \toprule
         \textbf{Currency} & \textbf{$\omega$} & \textbf{$\alpha+\beta$} & \textbf{$\nu$} & \textbf{Note} \\
@@ -33,7 +38,8 @@
         SEK & 0.00204 & 0.988569 & 7.82 &  \\
         \bottomrule
     \end{tabular}
-    \caption{GARCH(1,1)-t estimates. All twenty-six starting values converge to a single optimum for each currency.}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study. }
     \label{app:garch}
 \end{table}
 
@@ -41,7 +47,8 @@
 
 \begin{table}[H]
     \centering
-    \small
+    \caption{P-values under alternative covariance estimators.}
+    \vspace{\baselineskip}
     \begin{tabular}{llrrr}
         \toprule
         \textbf{Spec.} & \textbf{Variable} & \textbf{p (OLS)} & \textbf{p (HAC)} & \textbf{p (clu)} \\
@@ -68,10 +75,8 @@
          & $govexp$    & 0.832 & 0.806 & 0.871 \\
         \bottomrule
     \end{tabular}
-    \caption{P-values under alternative covariance estimators. Coefficients and
-    standard errors are unchanged from Table~\ref{tab:panel_results}; only the
-    p-values differ. Cluster-robust p-values are computed on six clusters and
-    are biased downward.}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study. Note: OLS = ordinary least squares; HAC = Newey-West; clu = clustered by country.}
     \label{tab:se_alt}
 \end{table}
 
@@ -79,6 +84,8 @@
 
 \begin{table}[H]
     \centering
+    \vspace{\baselineskip}
+    \caption{Marginal effect of volatility on growth}
     \begin{tabular}{lcccc}
         \toprule
         \textbf{Quantile} & \textbf{Trade intensity} &
@@ -91,8 +98,7 @@
         95th  & 95.64 & $-0.540$  & 1.686 & 0.749 \\
         \bottomrule
     \end{tabular}
-    \caption{Marginal effect of volatility on growth, evaluated across the
-    distribution of euro-area trade intensity. Country means: Denmark 25.9,
-    Sweden 27.6, Romania 36.8, Poland 46.6, Hungary 84.8, Czech Republic 87.9.}
+    \vspace{\baselineskip}
+    \caption*{\footnotesize Source: Own study.}
     \label{tab:mar_eff_vol}
 \end{table}

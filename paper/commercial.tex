@@ -1,4 +1,4 @@
-\section{Commercial and Currency Integration}\label{sec:commercial}
+\section{COMMERCIAL AND CURRENCY INTEGRATION}\label{sec:commercial}
 In previous section we discussed the economic theory when a group of countries should share a currency.
 Those conditions do not explain what exactly happened in the European Union where all six countries we study belong to the single market.
 Labor and capital can move freely between each other country and the euro area.
@@ -8,6 +8,53 @@ We will discuss how each currency has been managed since 2005 and how they are d
 
 \vspace{\baselineskip}
 
+\begin{figure}[htbp]
+\centering
+\caption{Calendar of European monetary integration}
+\vspace{\baselineskip}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[x=1.0cm, y=1cm]
+% estimation window
+\fill[black!8] (6.5,-2.45) rectangle (12.6,2.15);
+
+% koruna floor span
+\draw[line width=3pt, black!35] (9.4,0) -- (10.8,0);
+% axis
+\draw[->, thick] (-0.6,0) -- (13.5,0);
+% ticks and years
+\foreach \x/\lab in {0/1979, 2.2/1992, 4.0/1999, 6.0/2004, 7.6/2007, 9.4/2013, 12.6/2024}
+  {\draw[thick] (\x,-0.14) -- (\x,0.14);
+   \node[font=\footnotesize, below=3pt] at (\x,0) {\lab};}
+\draw[thick] (5.0,-0.09) -- (5.0,0.09);
+\draw[thick] (10.8,-0.09) -- (10.8,0.09);
+% euro area institutions, above the line
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (0,0.55)
+  {EMS and ERM established};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (2.2,1.35)
+  {Maastricht Treaty};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.5cm] at (4.0,0.55)
+  {Euro introduced; ERM~II replaces ERM};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (6.0,1.35)
+  {CZ, HU, PL join the EU};
+\node[font=\scriptsize, align=center, anchor=south, text width=2.3cm] at (7.6,0.55)
+  {RO joins the EU};
+% national currency decisions, below the line
+\node[font=\scriptsize, align=center, anchor=north, text width=2.3cm] at (2.2,-1.35)
+  {Danish opt-out negotiated};
+\node[font=\scriptsize, align=center, anchor=north, text width=2.3cm] at (4.0,-0.6)
+  {DK joins ERM~II};
+\node[font=\scriptsize, align=center, anchor=north, text width=2.5cm] at (5.0,-1.35)
+  {Swedish referendum rejects the euro (2003)};
+\node[font=\scriptsize, align=center, anchor=north, text width=2.6cm] at (10.1,-0.6)
+  {CNB koruna floor 2013--2017};
+% row labels
+
+\end{tikzpicture}
+\vspace{\baselineskip}
+\caption*{\footnotesize Source: \cite{council_of_the_european_union_joining_2026}. Note: Sample window 2005-2024.}
+\label{fig:timeline}
+\end{figure}
+
 Before turning to the main point, it is worth setting out the historical background and the conditions for joining the euro.
 The monetary European Monetary was set up in 1979 to keep the exchange rate stable between members and encourage central banks working together (\cite{council_of_the_european_union_joining_2026}).
 Currencies were kept within the agreed limits through Exchange Rate Mechanism.
@@ -15,8 +62,31 @@ Mutual agreement can change the rates which meant states gave up controls over t
 This system ended in 1999 when euro is introduced and the monetary policy passed to European Central Bank.
 ERM II replaced the old mechanism which use as the framework for countries preparing to adopt the euro.
 
+\begin{table}[htbp]
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Convergence criteria and the position of the six non-euro member states.}
 \vspace{\baselineskip}
-
+\label{tab:convergence}
+\begin{tabular}{@{}L{2.0cm} L{3.6cm} *{6}{c}@{}}
+\toprule
+\multirow{2}{*}{\textbf{Criterion}} & \multirow{2}{*}{\textbf{Reference value}} & \multicolumn{6}{c}{\textbf{Fulfilled (2024)}} \\
+\cmidrule(l){3-8}
+ &  & CZ & DK & HU & PL & RO & SE \\
+\midrule
+Price stability & Inflation $\leq$ 1.5 percentage points & Yes & Yes & No & No & No & Yes \\
+\addlinespace
+Public finances & Deficit $<$ 3\% of GDP and debt $<$ 60\% of GDP & Yes & Yes & No & Yes & No & Yes \\
+\addlinespace
+Long-term interest rate & $\leq$ 2 percentage points & Yes & Yes& No &No &No & Yes \\
+\addlinespace
+Exchange rate stability & At least two years in ERM~II & No & Yes & No & No & No & No \\
+\bottomrule
+\end{tabular}
+\vspace{\baselineskip}
+\caption*{\footnotesize Source: European Commission (2024) Convergence Report; Council of the European Union (2026).}
+\end{table}
+\FloatBarrier
 There are four conditions known as convergence criteria which a country must meet before adopt the euro.
 It includes stable exchange rates where their inflation must be no more than 1.5 percentage points above the average of the top performing members.
 The country needs stable public finances and sustainable interest rate. 
@@ -30,7 +100,7 @@ Denmark is the exception case. It negotiated an opt-out from the treaties and do
 \vspace{\baselineskip}
 
 The six countries are outside of the euro area for different reasons. 
-The Czech Republic, Hungry, Poland and Romania can be consider in one group.
+The Czech Republic, Hungary, Poland and Romania can be considered in one group.
 None of four countries have joined ERM II.
 The reason can be differ by countries and changed over time.
 Most of them failed to meet the economic convergence criteria which including fiscal and inflation condition.
@@ -39,7 +109,7 @@ In the same report shows some countries lack of domestic political support.
 Where Poland and Czech Republic are the lowest from six countries with 47 percentage and 49 percentage respectively.
 Sweden fulfills all three condition except joining ERM II.
 But the main reason it is the 2003 Referendum which Swedish public firmly voted against adopting euro with 56 percentage.
-Denmark is the special case which they negotiated an exemption at Masstricht and they do not have obligation to adopt the euro.
+Denmark is the special case which they negotiated an exemption at Maastricht and they do not have obligation to adopt the euro.
 They take part in ERM II and Danish krone close to fixed rate against the euro where central bank buy and sell to maintain it.
 
 \vspace{\baselineskip}
@@ -63,7 +133,7 @@ The Sweden, Poland and Hungary currencies are floated and no comparable interven
 The six economics show differences in how much they trade with euro are same way as they manage their currencies.
 Trade intensity means exports and imports measured as a share of GDP from the twenty euro area members.
 Over the period it goes average from about 26 per cent in Denmark and 28 per cent in Sweden, to 37 per cent in Romania and 47 per cent in Poland, up to 85 per cent in Hungary and 88 in Czech Republic.
-Czech Republic and Hungry are closely tied into German manufacturing where parts cross their borders many times before its sold.
+Czech Republic and Hungary are closely tied into German manufacturing where parts cross their borders many times before its sold.
 Denmark and Sweden majorly trade with a wider set of partners where the United Kingdom and United States.
 They have less of their trade in the euro.
 Poland and Romania in between where they trade with euro area but their domestic economics are larger compare to the trades.
@@ -74,7 +144,7 @@ The regime differences described above are not only the background.
 It is worth to point out before the result are presented.
 The exchange rate flexibility and trade exposure show different directions than the theory.
 Denmark has the most fixed managed currency and the least euro are trade.
-Opposite the Czech Republic and Hungry have freely floating currencies and the most euro trade.
+Opposite the Czech Republic and Hungary have freely floating currencies and the most euro trade.
 McKinnon (\citeyear{mckinnon_optimum_1963}) shows the case more of a country trade with euro are the less its own currency is worth keeping.
 The six countries show the opposite of what theory suggests which is why the interaction between volatility and trade is worth testing.
 
