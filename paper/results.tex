@@ -298,6 +298,11 @@ The joint test also does not depend on whether the variables are centred.
 
 \subsubsection{Marginal Effect of Volatility}\label{sec:mar_eff_vol}
 
+The joint tests we discussed shows that trade exposure matters. 
+The model includes an interaction term and the effect of volatility on growth is not a single coefficient.
+Which it depends on a country's trade exposure to the euro area so the estimated coefficient cannot be read directly from the table.
+The marginal effect is computed across the observed range of trade intensity.
+
 \begin{figure}[H]
     \centering
     \caption{Marginal effect of volatility on growth by euro area trade intensity}
@@ -308,10 +313,9 @@ The joint test also does not depend on whether the variables are centred.
     \caption*{\footnotesize Source: Own Study. Note: With 95\% confidence intervals}
 \end{figure}
 
-The joint tests we discussed shows that trade exposure matters but no explanation.
-Because the model contain an interaction.
-The effect of volatility is not a single number which it changes with a country's trade exposure to the euro area.
 This figure \ref{fig:marg_eff} presents the marginal effect of volatility on growth where the line slopes downward across the whole range.
+This slope captures the result of interaction term in the model.
+It tells the effect of volatility falls as euro area trade intensity increases.
 Denmark and Sweden at the left end at around 26 percentage of GDP.
 The estimated effect of volatility on growth is positive around 6.3 points.
 It falls to 1.1 points by the time trade intensity is near 79 percentage and crosses zero at 90 percentage.
@@ -449,6 +453,12 @@ Whether asymmetry in daily volatility matter for growth is a separate question.
 This model design cannot explain since the aggregation removes the asymmetry before the panel regression.
 
 \subsection{Diagnostic}\label{subsec:diagnostic}
+
+The estimates presented above are only valid if the model assumptions are satisfied.
+We will examine the residuals for evidence of misspecification, heteroskedasticity, serial correlation and non-normality.
+Each of them is assessed with a standard test.
+It presents with the null hypothesis, test statistic and p value in table \ref{tab:diagnostics}.
+
 \begin{table}[H]
     \centering
     \caption{Residual diagnostics}

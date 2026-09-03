@@ -206,7 +206,7 @@ WNE UW
 {\large Warsaw, \the\year\par}
 \end{titlepage}
 \input{Super.tex}
-\input{declarationai.tex}
+
 
 \clearpage
 \renewcommand{\contentsname}{TABLE OF CONTENTS}
@@ -235,7 +235,8 @@ WNE UW
 
 \thesischapter{Bibliography}\label{sec:bibliography}
 \nocite{*}
-\printbibliography[heading=none, keyword=paper]
+{\setlength{\bibitemsep}{\baselineskip}
+\printbibliography[heading=none, keyword=paper]}
 
 \newpage
 % Appendices are lettered A, B, C, ... so "\ref{appendA}" prints "A".

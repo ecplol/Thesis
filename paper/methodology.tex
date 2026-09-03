@@ -5,7 +5,7 @@
 
 The model includes a wide range of macroeconomic indicators alongside the interactions.
 Observations for all series run from 2005 to 2024 and the frequency is annual.
-All series are sourced from the Eurostat database.
+All macroeconomic series are sourced from the Eurostat database except for the exchange rate.
 \begin{table}[H]
     \centering
     \caption{Macroeconomic series used in the model}
@@ -47,9 +47,10 @@ The sample includes Six European Union members that retained their own currencie
 The panel is annual from 2005 to 2024 giving 120 country year observations.
 The reason that observations are taken from 2005 reflects three considerations.
 The countries need to share the same institutional setting.
-The Czech Republic, Hungary and Poland joined the European Union in May 2004 so 2005 is the first full calendar year in which they traded inside the single market alongside Denmark and Sweden.
+The Czech Republic, Hungary and Poland joined the European Union in May 2004 to 2005 so it is the first full calendar year in which they traded inside the single market alongside Denmark and Sweden.
 Romania joined in 2007 two year after the start of the sample.
-Its exchange rate against the euro and trade with the euro are are measured on the same basis.
+But its exchange rate against the euro and trade with the euro are measured on the same basis.
+And Romania's currency exchange rate did not move much against the euro until 2009 so it does not add much variation to the sample.
 Currency markets in Central and Eastern Europe were much thinner before joining the EU.
 The early 2000s data reflect low trading volumes and more frequent central bank intervention than market behavior.
 The twenty year sample window from 2005 cover multiple separated financial stresses.
@@ -78,11 +79,15 @@ Exchange rate volatility is estimated by a GARCH model and asymmetric threshold-
 It is following the specification in Latief and Lefen (\citeyear{latief_effect_2018})
 The Daily log returns are computed as:
 
+\vspace{\baselineskip}
+
 \begin{equation}\label{log_return}
 r_t = \ln\left(\frac{S_t}{S_{t-1}}\right)
 \end{equation}
-    
+\vspace{\baselineskip}
+
 where $S_t$ denotes units of national currency per euro. The mean and variance equations are
+
 
 \begin{equation}\label{mean}
 r_t = \beta_0 + \beta_1 r_{t-1} + u_t
@@ -91,11 +96,15 @@ r_t = \beta_0 + \beta_1 r_{t-1} + u_t
 \begin{equation}\label{variance}
 \sigma^2_t = \omega + \alpha u^2_{t-1} + \beta \sigma^2_{t-1}    
 \end{equation}
+
+\vspace{\baselineskip}
+
 where $\omega$ is constant, $\alpha$ and $\beta$ are coefficients. 
 $\mu^2_{t-1}$ is the mean square of the previous time period.
 $\sigma^2_{t-1}$ is the variance of the previous time period.
 The Equation~\ref{mean} is the mean equation which represents the relationship between returns with its lag returns.
 The Equation~\ref{variance} is the variance to explain the volatility.
+
 \vspace{\baselineskip}
 
 A normal distribution is not used for the errors.
@@ -104,18 +113,24 @@ But the $t$-student distribution can allow this through its degrees of freedom p
 A threshold specification is estimated alongside the symmetric model.
 It allows a depreciation and an appreciation of the same size to have different effects on the following day's volatility.
 
+\vspace{\baselineskip}
 
 \begin{equation}\label{asymmetric}
 \sigma^2_t = \omega + \alpha u^2_{t-1} + \gamma u^2_{t-1} d_{t-1} + \beta \sigma^2_{t-1}
 \end{equation}
 
+\vspace{\baselineskip}
+
 where $d_{t-1}=1$ when $u_{t-1}<0$ and $0$ otherwise.
 Daily conditional volatility are aggregated to annual means to match the frequency of the macroeconomic data:
+
+\vspace{\baselineskip}
 
 \begin{equation}\label{annual_vol}
 VOL_{i,y} = \frac{1}{N_y}\sum_{t\in y}\sigma_{i,t}
 \end{equation}
 
+\vspace{\baselineskip}
 $N_y$ is the number of trading days in year $y$ for that currency.
 The averaging method makes little difference to the result.
 It matches the hypotheses which the average level of volatility a country faced during a year instead of how the volatility was distributed within it.
@@ -123,8 +138,10 @@ Averaging also explains why the results barely move between two volatility model
 Over around 250 trading days the differences between symmetric and threshold specifications cancels so the annual means are identical and follow the panel estimates.
 This stability reflects the aggregation.
 
+\newpage
 \subsection{Panel Regression Model}\label{subsec:reg_model}
 The estimated volatility series enters a panel growth regression:
+
 \begin{equation}\label{reg}
 growth_{i,t} = \beta_0 + \beta_1\,vol_{i,t} + \beta_2\,trade_{i,t} + \beta_3\,(vol_{i,t} \times trade_{i,t}) + \gamma'X_{i,t} + \varepsilon_{i,t}
 \end{equation}
@@ -153,9 +170,13 @@ Results are reported for pooled OLS, only country fixed effects and both country
 Because the model contains an interaction the coefficient on volatility does not describe the effect of volatility in general.
 The effect of any other level of trade exposure is:
 
+\vspace{\baselineskip}
+
 \begin{equation}\label{marg_ef}
 \frac{\partial g}{\partial vol} = \beta_1 + \beta_3\, trade
 \end{equation}
+
+\vspace{\baselineskip}
 
 This is evaluated across the observed range of trade intensity and reported as marginal effects.
 Reporting only the coefficient would describe one point on this range instead of the relationship.
@@ -240,6 +261,8 @@ VIF is computed as:
     \text{VIF}_j = \frac{1}{1- R_j^2}
 \end{equation}
 
+\vspace{\baselineskip}
+
 where $R_j^2$ comes from regressing $j$ on all the other regressors. 
 The closer two regressors move together the harder it is to tell which one is producing an effect to one instead of the other and less precise both estimates become.
 
@@ -252,6 +275,8 @@ Volatility and trade intensity are centred by subtracting their sample means:
     \widetilde{vol}_{i,t} = vol_{i,t} - \overline{vol}, \qquad
     \widetilde{trade}_{i,t} = trade_{i,t} - \overline{trade}
 \end{equation}
+
+\vspace{\baselineskip}
 
 Centring does not change the fit.
 The interaction coefficient, standard errors and residuals are identical either way but it changes what the individual coefficients mean.
